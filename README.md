@@ -17,3 +17,5 @@ A native macOS application built with Swift and SwiftUI designed to power automa
 * **Framework:** SwiftUI
 * **Platform:** macOS 15.4+ (Sequoia / Tahoe)
 * **Integration:** Simply do a Display Capture in OBS Studio :)
+
+Note: By default, this app is only optimized to run on Apple Silicon. It is 100% possible and easy to change the app to compile for Intel too, but to keep the app size smaller especially if an update is needed for the app mid stream, we opted to only have the app run on Apple Silicon.
