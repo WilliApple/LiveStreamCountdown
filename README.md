@@ -6,7 +6,7 @@ A native macOS application built with Swift and SwiftUI designed to power automa
 
 ## 🚀 Features
 
-* **Native Performance:** Built entirely in Swift and SwiftUI for minimal CPU and memory utilization—perfect for long-running, continuous 24/7 streams on Apple Silicon.
+* **Native Performance:** Built entirely in Swift and SwiftUI for minimal CPU and memory utilization, perfect for long-running, continuous 24/7 streams on Apple Silicon.
 * **Dynamic Backgrounds:** Seamlessly transitions and moves between macOS wallpapers left and right to provide a relaxing, premium aesthetic.
 * **Precise Time Tracking:** Automatically calculates down to the exact second of the event target without requiring hardcoded timestamps (To configure this, go to App Menu > Settings)
 * **OBS Studio Optimized:** Designed to fit perfectly within a 16:9 widescreen layout for seamless window capture.
