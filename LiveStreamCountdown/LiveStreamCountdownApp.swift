@@ -16,12 +16,25 @@ struct LiveStreamCountdownApp: App {
     @AppStorage("announcement1") private var announcement1: String = ""
     @AppStorage("announcement2") private var announcement2: String = ""
     
+    var countdownTimeBinding: Binding<Date> {
+        Binding(
+            get: {
+                let savedDate = Date(timeIntervalSince1970: countdownDate)
+                let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: savedDate)
+                return Calendar.current.date(from: components) ?? savedDate
+            },
+            set: { newDate in
+                let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: newDate)
+                if let zeroedSecondsDate = Calendar.current.date(from: components) {
+                    countdownDate = zeroedSecondsDate.timeIntervalSince1970
+                } else {
+                    countdownDate = newDate.timeIntervalSince1970
+                }
+            }
+        )
+    }
+    
     var body: some Scene {
-        var countdownTime: Date {
-            get { Date(timeIntervalSince1970: countdownDate) }
-            set { countdownDate = newValue.timeIntervalSince1970 }
-        }
-        
         WindowGroup {
             ContentView()
         }
@@ -42,14 +55,8 @@ struct LiveStreamCountdownApp: App {
                         
                         TextField("Countdown Name", text: $countdownName)
                         
-                        DatePicker("Countdown Date", selection: Binding(
-                            get: { countdownTime },
-                            set: { countdownTime = $0 }
-                        ), displayedComponents: .date)
-                        DatePicker("Countdown Time", selection: Binding(
-                            get: { countdownTime },
-                            set: { countdownTime = $0 }
-                        ), displayedComponents: .hourAndMinute)
+                        DatePicker("Countdown Date", selection: countdownTimeBinding, displayedComponents: .date)
+                        DatePicker("Countdown Time", selection: countdownTimeBinding, displayedComponents: .hourAndMinute)
                         
                         TextField("Announcement1", text: $announcement1)
                         TextField("Announcement2", text: $announcement2)
